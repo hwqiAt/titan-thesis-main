@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "m  "author": "Haniker",
+  "author": "huy",
   "license": "ISC",
   "scripts": {
     "//": "Use parent package.json for all scripts"
@@ -12,7 +12,6 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "jose": "^6.1.0",
-    "kysely": "^0.28.3",
     "pg": "^8.16.3",
     "pino-http": "^10.5.0",
     "pino-http-print": "^3.1.0",
@@ -23,3 +22,5 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/pg": "^8.15.4"
+  }
+}

@@ -2,8 +2,8 @@
   "name": "web",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "author": "Haniker",
+  "main": "index.ts",
+  "author": "huy",
   "license": "ISC",
   "scripts": {
     "//": "Use parent package.json for all scripts"
