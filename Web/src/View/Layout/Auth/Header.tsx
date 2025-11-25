@@ -1,5 +1,5 @@
 import { css } from "@emotion/css"
-import { AuthState } from "../../../State"
+import { State } from "../../../State"
 import { JSX } from "react"
 import { localImage } from "../../ImageLocalSrc"
 import Link from "../../Link"
@@ -7,12 +7,13 @@ import { toRoute } from "../../../Route"
 import { color, font, theme } from "../../Theme"
 import { emit } from "../../../Runtime/React"
 import * as LoginAction from "../../../Action/Login"
+import { IoMdCart, IoMdNotifications } from "react-icons/io"
 
-type Props = { authState: AuthState }
+type Props = { state: State }
 export default function (props: Props): JSX.Element {
-  const { authState } = props
+  const { state } = props
 
-  return (
+  return state._t === "Auth" ? (
     <div className={styles.container}>
       <Link
         route={toRoute("Home", {})}
@@ -24,9 +25,7 @@ export default function (props: Props): JSX.Element {
         <Link
           route={toRoute("Home", {})}
           className={
-            authState.route._t === "Home"
-              ? styles.menuItemActive
-              : styles.menuItem
+            state.route._t === "Home" ? styles.menuItemActive : styles.menuItem
           }
         >
           Home
@@ -34,7 +33,7 @@ export default function (props: Props): JSX.Element {
         <Link
           route={toRoute("Profile", {})}
           className={
-            authState.route._t === "Profile"
+            state.route._t === "Profile"
               ? styles.menuItemActive
               : styles.menuItem
           }
@@ -47,6 +46,29 @@ export default function (props: Props): JSX.Element {
           className={styles.menuItem}
         >
           Logout
+        </Link>
+      </div>
+    </div>
+  ) : (
+    <div className={styles.container}>
+      <Link
+        route={toRoute("Home", {})}
+        className={styles.logo}
+      >
+        <img src={localImage.logo.unwrap()} />
+      </Link>
+      <div className={styles.menuItems}>
+        <div>
+          <IoMdCart size={32}></IoMdCart>
+        </div>
+        <div>
+          <IoMdNotifications size={32}></IoMdNotifications>
+        </div>
+        <Link
+          route={toRoute("Login", { redirect: null })}
+          className={styles.menuItem}
+        >
+          Login
         </Link>
       </div>
     </div>

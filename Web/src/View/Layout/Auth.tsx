@@ -12,7 +12,7 @@ export function AuthLayout(props: Props): JSX.Element {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.headerWrap}>
-          <Header authState={authState} />
+          <Header state={authState} />
         </div>
       </div>
       <div className={styles.body}>

@@ -3,6 +3,7 @@ import { AuthState, State } from "./State"
 import { LoadingLayout } from "./View/Layout/Loading"
 import { EmptyLayout } from "./View/Layout/Empty"
 import { AuthLayout } from "./View/Layout/Auth"
+import { HomeLayout } from "./View/Layout/Home"
 import ProfilePage from "./Page/Profile"
 import NotFoundPage from "./Page/NotFound"
 import LoginPage from "./Page/Login"
@@ -17,7 +18,12 @@ export default function View(props: Props): JSX.Element {
 
   switch (state.route._t) {
     case "Home":
-      return withAuthLayout(state, HomePage)
+      return (
+        <HomeLayout
+          state={state}
+          Page={HomePage}
+        />
+      )
     case "NotFound":
       return (
         <EmptyLayout

@@ -1,10 +1,10 @@
 import { JSX } from "react"
 import { css } from "@emotion/css"
-import { AuthState } from "../State"
+import { AuthState, PublicState } from "../State"
 import { bp, color, font, theme } from "../View/Theme"
 
-export type Props = { authState: AuthState }
-export default function HomePage(_props: Props): JSX.Element {
+export type HomePageProps = { state: AuthState | PublicState }
+export default function HomePage(_props: HomePageProps): JSX.Element {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Lorem Ipsum</h1>

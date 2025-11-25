@@ -1,0 +1,25 @@
+import { css } from "@emotion/css"
+import { State } from "../../State"
+import { JSX } from "react"
+import Header from "./Auth/Header"
+
+type Props = {
+  state: State
+  Page: React.FC<{ state: State }>
+}
+export function HomeLayout(props: Props): JSX.Element {
+  const { state, Page } = props
+  return (
+    <div className={styles.container}>
+      <Header state={state} />
+      <Page state={state} />
+    </div>
+  )
+}
+
+const styles = {
+  container: css({
+    width: "100dvw",
+    height: "100dvh",
+  }),
+}
