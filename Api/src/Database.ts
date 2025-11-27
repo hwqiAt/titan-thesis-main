@@ -5,6 +5,7 @@ import ENV from "./Env"
 export type Schema = {
   user: UserTable
   refresh_token: RefreshTokenTable
+  product: ProductTable
 }
 
 type UserTable = {
@@ -12,6 +13,15 @@ type UserTable = {
   email: string
   name: string
   password: string
+  isDeleted: boolean
+  updatedAt: Date
+  createdAt: Date
+}
+type ProductTable = {
+  id: string
+  name: string
+  price: number
+  description: string
   isDeleted: boolean
   updatedAt: Date
   createdAt: Date

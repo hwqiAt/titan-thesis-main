@@ -93,3 +93,9 @@ export const noUrlParamsDecoder: JD.Decoder<NoUrlParams> = JD.always({})
 export const noBodyParamsDecoder: JD.Decoder<NoBodyParams> = JD.always({})
 export const noErrorCodeDecoder: JD.Decoder<NoErrorCode> = JD.null_
 export const noPayloadDecoder: JD.Decoder<NoPayload> = JD.always({})
+
+export function urlParamsDecoder<T>(decoder: JD.Decoder<T>): JD.Decoder<T> {
+  return decoder
+}
+export type UrlParams<D extends JD.Decoder<unknown>> =
+  D extends JD.Decoder<infer T> ? T : never
