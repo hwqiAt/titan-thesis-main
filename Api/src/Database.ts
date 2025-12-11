@@ -6,6 +6,7 @@ export type Schema = {
   user: UserTable
   refresh_token: RefreshTokenTable
   product: ProductTable
+  product_image: ProductImageTable
 }
 
 type UserTable = {
@@ -32,6 +33,15 @@ type RefreshTokenTable = {
   previousID: string
   previousCreatedAt: Date
   userID: string
+  createdAt: Date
+}
+
+type ProductImageTable = {
+  id: string
+  productID: string
+  url: string
+  isDeleted: boolean
+  updatedAt: Date
   createdAt: Date
 }
 

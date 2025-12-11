@@ -1,9 +1,10 @@
 import * as API from "../../../../../Core/Api/Public/Product/GetList"
 import { Result, err, ok } from "../../../../../Core/Data/Result"
 import * as ProductRow from "../../../Database/ProductRow"
-import { toProduct } from "../../../App/Product"
+import { toBasicProduct } from "../../../App/BasicProduct"
 import { NoUrlParams } from "../../../../../Core/Data/Api"
-import { Product } from "../../../../../Core/App/Product"
+import { BasicProduct } from "../../../../../Core/App/BasicProduct"
+import * as ProductImageRow from "../../../Database/ProductImageRow"
 
 export const contract = API.contract
 
@@ -15,7 +16,18 @@ export async function handler(
     return err("NO_PRODUCTS_FOUND")
   }
 
-  const products: Product[] = productRows.map(toProduct)
+  return ok(await getlistPayload(productRows))
+}
 
-  return ok(products)
+export async function getlistPayload(
+  productRows: ProductRow.ProductRow[],
+): Promise<API.Payload> {
+  const productsWithImagePromises = productRows.map(async (row) => {
+    const imagesResult = await ProductImageRow.getByProductID(row.id)
+    const images: ProductImageRow.ProductImageRow[] = imagesResult ?? []
+    const firstImage = images.length > 0 ? [images[0]] : []
+    return toBasicProduct(row, firstImage[0])
+  })
+  const products: BasicProduct[] = await Promise.all(productsWithImagePromises)
+  return products
 }

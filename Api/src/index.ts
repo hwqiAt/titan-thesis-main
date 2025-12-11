@@ -25,7 +25,7 @@ app.use(HttpLogger)
 
 // Set use json for all requests but request must have content-type application/json
 // Recommended by ExpressJS
-app.use(json({ limit: "400kb", type: "application/json" }))
+app.use(json({ limit: "5mb" }))
 
 // All API routes are defined in this function
 routes(app)

@@ -15,6 +15,7 @@ export type JsonWebToken<T> = Opaque<State<T>, typeof key, T>
 type State<T> = {
   token: string // the original token
   header: string
+
   payload: T & Claims
   signature: string
 }

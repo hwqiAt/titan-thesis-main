@@ -91,6 +91,7 @@ export async function getByName(name: Name): Promise<Maybe<ProductRow>> {
       throw e
     })
 }
+
 export async function getAll(): Promise<ProductRow[]> {
   return db
     .selectFrom(tableName)
